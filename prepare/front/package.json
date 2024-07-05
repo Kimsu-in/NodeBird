@@ -1,0 +1,28 @@
+{
+  "name": "react-nodebird-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next -p 3060",
+    "build": "next build"
+  },
+  "author": "Suin",
+  "license": "ISC",
+  "dependencies": {
+    "@ant-design/icons": "^4.8.3",
+    "antd": "^4.24.16",
+    "cross-env": "^7.0.3",
+    "next": "^9.5.5",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "styled-components": "^5.3.11"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^2.7.1",
+    "eslint-plugin-react-hooks": "^4.6.2"
+  }
+}
