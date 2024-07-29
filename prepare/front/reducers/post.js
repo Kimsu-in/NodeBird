@@ -18,7 +18,7 @@ export const initialState = {
           src: "https://placebear.com/1280/720",
         },
       ],
-      Comment: [
+      Comments: [
         {
           User: {
             nickname: "nero",
