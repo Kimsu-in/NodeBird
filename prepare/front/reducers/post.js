@@ -12,7 +12,7 @@ export const initialState = {
           src: "https://loremflickr.com/1280/720",
         },
         {
-          src: "https://placekitten.com/640/360",
+          src: "https://picsum.photos/1280/720",
         },
         {
           src: "https://placebear.com/1280/720",
