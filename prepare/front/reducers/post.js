@@ -6,7 +6,7 @@ export const initialState = {
         id: 1,
         nickname: "수인",
       },
-      content: "첫 번째 게시글 #해시태그 # 익스프레스",
+      content: "첫 번째 게시글 #해시태그 #익스프레스",
       Images: [
         {
           src: "https://loremflickr.com/1280/720",
