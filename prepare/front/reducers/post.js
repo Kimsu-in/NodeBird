@@ -22,13 +22,17 @@ export const initialState = {
       ],
       Comments: [
         {
+          id: shortId.generate(),
           User: {
+            id: shortId.generate(),
             nickname: "nero",
           },
           content: "배가 고파요!",
         },
         {
+          id: shortId.generate(),
           User: {
+            id: shortId.generate(),
             nickname: "hero",
           },
           content: "집에 가고싶어요~",
@@ -64,8 +68,8 @@ export const addComment = (data) => ({
 });
 
 const dummyPost = (data) => ({
-  id: shortId.generate(),
-  content: data,
+  id: data.id,
+  content: data.content,
   User: {
     id: 1,
     nickname: "수인",
