@@ -1,5 +1,6 @@
 import shortId from "shortid";
 import { produce } from "immer";
+import faker from "faker";
 
 export const initialState = {
   mainPosts: [
@@ -12,24 +13,29 @@ export const initialState = {
       content: "첫 번째 게시글 #해시태그 #익스프레스",
       Images: [
         {
+          id: shortId.generate(),
           src: "https://loremflickr.com/1280/720",
         },
         {
+          id: shortId.generate(),
           src: "https://picsum.photos/1280/720",
         },
         {
+          id: shortId.generate(),
           src: "https://placebear.com/1280/720",
         },
       ],
       Comments: [
         {
           User: {
+            id: shortId.generate(),
             nickname: "nero",
           },
           content: "우와 개정판이 나왔군요~",
         },
         {
           User: {
+            id: shortId.generate(),
             nickname: "hero",
           },
           content: "얼른 사고싶어요~",
@@ -60,6 +66,34 @@ export const REMOVE_POST_FAILURE = "ADD_POST_FAILURE";
 export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+
+initialState.mainPosts = initialState.mainPosts.concat(
+  Array(20)
+    .fill()
+    .map(() => ({
+      id: shortId.generate(),
+      User: {
+        id: shortId.generate(),
+        nickname: faker.name.findName(),
+      },
+      content: faker.lorem.paragraph(),
+      Images: [
+        {
+          id: shortId.generate(),
+          src: "https://loremflickr.com/1280/720",
+        },
+      ],
+      Comments: [
+        {
+          User: {
+            id: shortId.generate(),
+            nickname: faker.name.findName(),
+          },
+          content: faker.lorem.sentence(),
+        },
+      ],
+    })),
+);
 
 export const addPost = (data) => ({
   type: ADD_POST_REQUEST,
