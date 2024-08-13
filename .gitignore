@@ -1,17 +1,5 @@
 # Node.js
-/prepare/front/node_modules/
-/prepare/front/npm-debug.log*
-/prepare/front/yarn-debug.log*
-/prepare/front/yarn-error.log*
-
-# Logs
-/prepare/front/logs
-/prepare/front/*.log
-
-# Dependency directories
-/prepare/front/node_modules/
+prepare/front/node_modules/
 
 # Next.js
-/prepare/front/.next/
-/prepare/front/out/
-/prepare/front/build/
+prepare/front/.next/
