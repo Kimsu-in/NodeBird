@@ -1,5 +1,6 @@
 # Node.js
 prepare/front/node_modules/
+prepare/back/node_modules/
 
 # Next.js
 prepare/front/.next/
