@@ -40,7 +40,7 @@ const CommentForm = ({ post }) => {
           htmlType="submit"
           loading={addCommentLoading}
         >
-          삐약
+          저장
         </Button>
       </Form.Item>
     </Form>
