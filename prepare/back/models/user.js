@@ -6,16 +6,16 @@ module.exports = (sequelize, DataTypes) => {
       // id 기본적으로 들어있음.
       email: {
         type: DataTypes.STRING(30),
-        allowNull: false, // 필수
+        allowNull: true, // 필수
         unique: true, // 고유한 값
       },
       nickname: {
         type: DataTypes.STRING(30),
-        allowNull: false, // 필수
+        allowNull: true, // 필수
       },
       password: {
         type: DataTypes.STRING(100), // 암호화되기 때문에 넉넉히
-        allowNull: false, // 필수
+        allowNull: true, // 필수
       },
     },
     {
