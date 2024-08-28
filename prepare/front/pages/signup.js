@@ -1,8 +1,9 @@
 import Head from "next/head";
 import AppLayout from "../components/AppLayout";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
 
 import useInput from "../hooks/useInput";
 import styled from "styled-components";
@@ -14,7 +15,21 @@ const ErrorMessage = styled.div`
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { signUpLoading } = useSelector((state) => state.user);
+  const { signUpLoading, signUpDone, signUpError } = useSelector(
+    (state) => state.user,
+  );
+
+  useEffect(() => {
+    if (signUpDone) {
+      Router.push("");
+    }
+  }, [signUpDone]);
+
+  useEffect(() => {
+    if (signUpError) {
+      alert(signUpError);
+    }
+  }, [signUpError]);
 
   const [email, onChangeEmail] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
@@ -86,6 +101,7 @@ const Signup = () => {
             value={password}
             required
             onChange={onChangePassword}
+            type="password"
           />
         </div>
         <div>
@@ -96,6 +112,7 @@ const Signup = () => {
             value={passwordCheck}
             required
             onChange={onChangePasswordCheck}
+            type="password"
           />
           {passwordError && (
             <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
