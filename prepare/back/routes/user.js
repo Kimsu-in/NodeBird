@@ -1,7 +1,32 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
 const { User } = require("../models");
 const router = express.Router();
+
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    // 미들웨어 확장
+    if (err) {
+      // 서버 에러
+      console.error(err);
+      return next(err);
+    }
+    if (info) {
+      // 클라이언트 에러
+      return res.status(401).send(info.reason);
+    }
+    return req.login(user, async (loginErr) => {
+      //사용자 정보 보내줌
+      if (loginErr) {
+        // passport error
+        console.error(loginErr);
+        return next(loginErr);
+      }
+      return res.json(user); // 성공했으니 사용자 정보 프론트로 넘겨주기
+    });
+  })(req, res, next);
+});
 
 router.post("/", async (req, res, next) => {
   // POST /user/

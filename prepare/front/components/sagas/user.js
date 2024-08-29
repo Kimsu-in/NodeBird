@@ -58,16 +58,15 @@ function* unfollow(action) {
 }
 
 function loginAPI(data) {
-  return axios.post("/api/login", data);
+  return axios.post("/user/login", data);
 }
 
 function* logIn(action) {
   try {
-    // const result = yield call(loginAPI, action.data);
-    yield delay(1000);
+    const result = yield call(loginAPI, action.data);
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
   } catch (err) {
     yield put({
@@ -78,7 +77,7 @@ function* logIn(action) {
 }
 
 function logoutAPI() {
-  return axios.post("/api/logout");
+  return axios.post("/logout");
 }
 
 function* logOut() {
@@ -98,7 +97,7 @@ function* logOut() {
 
 function signupAPI(data) {
   // data를 넘기려면 post, put, patch만 됨
-  return axios.post("http://localhost:3065/user", data); // data - email, password, nickname 객체
+  return axios.post("/user", data); // data - email, password, nickname 객체
 }
 
 function* signUp(action) {
