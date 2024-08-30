@@ -23,7 +23,8 @@ router.post("/login", (req, res, next) => {
         console.error(loginErr);
         return next(loginErr);
       }
-      return res.json(user); // 성공했으니 사용자 정보 프론트로 넘겨주기
+      // res.setHeader('Cookie', 'cxlhy')
+      return res.status(200).json(user); // 성공했으니 사용자 정보 프론트로 넘겨주기
     });
   })(req, res, next);
 });

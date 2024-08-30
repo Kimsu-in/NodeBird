@@ -6,6 +6,7 @@ import {
   fork,
   throttle,
 } from "redux-saga/effects";
+import axios from "axios";
 import shortId from "shortid";
 import {
   ADD_POST_REQUEST,

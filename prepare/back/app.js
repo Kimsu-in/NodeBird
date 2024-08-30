@@ -1,11 +1,16 @@
 const express = require("express");
 const cors = require("cors");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const dotenv = require("dotenv");
 
 const postRouter = require("./routes/post");
 const userRouter = require("./routes/user");
 const db = require("./models");
 const passportConfig = require("./passport");
 
+dotenv.config();
 const app = express();
 db.sequelize
   .sync()
@@ -18,12 +23,21 @@ passportConfig();
 
 app.use(
   cors({
-    origiin: "*",
-    credentials: false,
+    origin: true,
   }),
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // form data 처리 - req.body에 넣어줌
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(
+  passport.session({
+    saveUninitialized: false,
+    resave: false,
+    secret: process.env.COOKIE_SECRET,
+  }),
+);
+app.use(passport.initialize());
+app.use(session());
 
 app.get("/", (req, res) => {
   // 브라우저 주소창은 get요청

@@ -4,3 +4,6 @@ prepare/back/node_modules/
 
 # Next.js
 prepare/front/.next/
+
+# .env
+prepare/back/.env
