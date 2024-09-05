@@ -23,21 +23,25 @@ passportConfig();
 
 app.use(
   cors({
-    origin: true,
+    origin: "http://localhost:3060",
+    credentials: true,
   }),
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // form data 처리 - req.body에 넣어줌
 app.use(cookieParser(process.env.COOKIE_SECRET));
+
 app.use(
-  passport.session({
+  session({
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
   }),
 );
+
 app.use(passport.initialize());
-app.use(session());
+app.use(passport.session());
 
 app.get("/", (req, res) => {
   // 브라우저 주소창은 get요청

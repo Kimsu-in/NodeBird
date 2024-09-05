@@ -47,7 +47,6 @@ router.post("/", async (req, res, next) => {
       nickname: req.body.nickname,
       password: hashedPassword,
     });
-    res.setHeader("Access-Control-Allow-Origin, http://localhost:3060");
     res.status(201).send("ok"); // 201 - 잘 생성됨
   } catch (error) {
     console.error(error);
