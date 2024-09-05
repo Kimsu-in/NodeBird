@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User } = require("../models");
+const { User, Post } = require("../models");
 const router = express.Router();
 
 router.post("/login", (req, res, next) => {
@@ -24,7 +24,24 @@ router.post("/login", (req, res, next) => {
         return next(loginErr);
       }
       // res.setHeader('Cookie', 'cxlhy')
-      return res.status(200).json(user); // 성공했으니 사용자 정보 프론트로 넘겨주기
+      const fullUserWithoutPassword = await User.findOne({
+        where: { id: user.id },
+        attributes: { exclude: ["password"] },
+        include: [
+          {
+            model: Post,
+          },
+          {
+            model: User,
+            as: "Followings",
+          },
+          {
+            model: User,
+            as: "Followers",
+          },
+        ],
+      });
+      return res.status(200).json(fullUserWithoutPassword); // 성공했으니 사용자 정보 프론트로 넘겨주기
     });
   })(req, res, next);
 });
