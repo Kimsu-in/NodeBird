@@ -73,7 +73,7 @@ router.post("/", isNotLoggedIn, async (req, res, next) => {
       nickname: req.body.nickname,
       password: hashedPassword,
     });
-    res.status(201).send("ok"); // 201 - 잘 생성됨
+    res.status(201).send("ok"); // 201 - 잘 생성되었을때
   } catch (error) {
     console.error(error);
     next(error); // error를 한방에 보냄 status(500)
